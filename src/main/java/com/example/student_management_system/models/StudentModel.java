@@ -1,5 +1,10 @@
 package com.example.student_management_system.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentModel {
     private Long studentId;
     private String studentName;

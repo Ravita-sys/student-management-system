@@ -4,10 +4,9 @@ import com.example.student_management_system.models.StudentModel;
 import com.example.student_management_system.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/std")
@@ -18,5 +17,9 @@ public class StudentResource {
     @PostMapping("/saveStudentDetails")
     public ResponseEntity<?> saveStudentDetails(@RequestBody StudentModel studentModel){
         return studentService.saveStudentDetails(studentModel);
+    }
+    @GetMapping("/getStudentDetails")
+    public List<StudentModel> getStudentDetails(){
+        return studentService.getStudentDetails();
     }
 }

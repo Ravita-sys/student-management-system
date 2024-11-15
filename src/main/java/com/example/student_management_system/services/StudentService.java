@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class StudentService {
 
@@ -21,5 +24,11 @@ public class StudentService {
         studentEntity.setPhone(studentModel.getPhone());
         studentRepository.save(studentEntity);
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    public List<StudentModel> getStudentDetails() {
+        List<StudentEntity> studentEntities = studentRepository.findAll();
+        return studentEntities.stream().map(studentEntity -> new StudentModel(studentEntity.getStudentId(), studentEntity.getStudentName(), studentEntity.getEmail(), studentEntity.getPhone()))
+                .toList();
     }
 }
